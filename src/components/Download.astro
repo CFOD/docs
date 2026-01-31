@@ -1,0 +1,65 @@
+---
+import { LinkButton } from '@astrojs/starlight/components';
+
+let w; // Windows asset.
+let l; // Linux asset.
+let e = null;
+
+try
+{
+  // Get the latest release metadata from GitHub.
+  //
+  const r = await fetch ('https://api.github.com/repos/iw4x/launcher/releases/latest');
+
+  if (!r.ok)
+    throw new Error (r.statusText);
+
+  const d = await r.json ();
+  const as = d.assets || [];
+
+  // Look for 'windows' or a generic '.exe'. We assume that if it's
+  // an executable and nothing else is specified, it's our Windows
+  // entry point.
+  //
+  w = as.find (a => a.name.toLowerCase ().includes ('windows') || a.name.endsWith ('.exe'));
+
+  // For Linux, we just look for the keyword. If we start supporting
+  // AppImages or specific distros, we'll need to sharpen this logic.
+  //
+  l = as.find (a => a.name.toLowerCase ().includes ('linux'));
+}
+catch (x)
+{
+  // If we hit a rate limit or the repo is moved, we just log it and
+  // let the UI handle the nulls. No need to crash the whole page build.
+  //
+  console.error (x);
+  e = x;
+}
+---
+
+{w ? (
+  <LinkButton
+    href={w.browser_download_url}
+    variant="primary"
+    icon="seti:windows"
+    iconPlacement="start"
+  >
+    Download for Windows
+  </LinkButton>
+) : (
+  <p><em>Windows download currently unavailable.</em></p>
+)}
+
+{l ? (
+  <LinkButton
+    href={l.browser_download_url}
+    variant="secondary"
+    icon="linux"
+    iconPlacement="start"
+  >
+    Download for Linux
+  </LinkButton>
+) : (
+  <p><em>Linux download currently unavailable.</em></p>
+)}

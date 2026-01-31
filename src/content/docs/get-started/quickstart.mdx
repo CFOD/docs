@@ -7,6 +7,7 @@ next: Manual Installation on Windows
 import { FileTree, LinkButton, Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
 import Video from '@/components/Video.astro';
+import Download from '@/components/Download.astro';
 import find_directory from "@/assets/vid/install/find_directory.mp4";
 import verify_integrity from "@/assets/vid/install/verify_file_integrity.mp4";
 import download_launcher from "@/assets/vid/install/download_launcher.mp4";
@@ -97,8 +98,7 @@ The simplest way is by using the IW4x launcher, which will download and install 
 
 1. Get the launcher from [GitHub](https://github.com/iw4x/launcher)
 
-    <LinkButton href="https://github.com/iw4x/launcher/releases/latest/download/iw4x-launcher.exe" variant="primary" icon="seti:windows" iconPlacement="start">**Download for Windows**</LinkButton>
-    <LinkButton href="https://github.com/iw4x/launcher/releases/latest/download/iw4x-launcher-x86_64-unknown-linux-gnu.tar.gz" variant="primary" icon="linux" iconPlacement="start">**Download for Linux**</LinkButton>
+    <Download />
 
 2. Move it into your Modern Warfare 2 directory
 
