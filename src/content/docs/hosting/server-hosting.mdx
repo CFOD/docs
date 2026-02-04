@@ -7,6 +7,7 @@ description: Setup and host servers on IW4x
 
 import { Steps, LinkCard, LinkButton, FileTree, Icon } from '@astrojs/starlight/components';
 
+import Download from '@/components/Download.astro'
 import Video from '@/components/Video.astro';
 import drag_client_files from "@/assets/vid/hosting/hosting_drag_client_files.mp4"
 import drag_game_files from "@/assets/vid/hosting/hosting_drag_game_files.mp4"
@@ -197,23 +198,11 @@ The client DLL is the core IW4x modification that enables the enhanced features 
 </Steps>
 
 <Steps>
-1. Download the latest client binary
+1. Download the latest client launcher
 
-    <LinkButton
-        href="https://github.com/iw4x/launcher/releases/latest/download/iw4x-launcher.exe"
-        variant="primary"
-        icon="seti:windows"
-        iconPlacement="start"
-        >IW4x Windows(Latest Release)</LinkButton>
+    <Download />
 
-    <LinkButton
-        href="https://github.com/iw4x/launcher/releases/latest/download/iw4x-launcher-x86_64-unknown-linux-gnu.tar.gz"
-        variant="primary"
-        icon="linux"
-        iconPlacement="start"
-        >IW4x Linux(Latest Release)</LinkButton>
-
-2. Place `iw4x.exe`(Windows) or `iw4x-launcher`(Linux) directly into your MW2 server folder `C:\GameServers\MW2-Server`
+2. Place `iw4x-launcher.exe`(Windows) or `iw4x-launcher`(Linux) directly into your MW2 server folder `C:\GameServers\MW2-Server`
         <Video src={drag_client_files} />
 
 </Steps>
@@ -516,16 +505,18 @@ You're now ready to start your server!
 ### Windows
 
 1. Navigate to your MW2 server folder (`C:\GameServers\MW2-Server`)
-2. Double click `DedicatedServer.bat` (for a Dedicated server) or `DedicatedLobbyServer.bat` (for a party server)
-3. A console window will open showing server startup messages, you may see errors or missing files. Do not be worried unless the next steps below fail.
+2. Double click `iw4x-launcher.exe` to install the latest client files.
+3. Double click `DedicatedServer.bat` (for a Dedicated server) or `DedicatedLobbyServer.bat` (for a party server)
+4. A console window will open showing server startup messages, you may see errors or missing files. Do not be worried unless the next steps below fail.
 
 
 
 ### Linux
 
 1. Navigate to your MW2 server folder (`C:\GameServers\MW2-Server`)
-2. Run `DedicatedServer.sh` (for a Dedicated server) or `DedicatedLobbyServer.sh` (for a party server) in a terminal.
-3. Your terminal will start showing server startup messages, you may see errors or missing files. Do not be worried unless the next steps below fail.
+2. Open a terminal in the directory and run `./iw4x-launcher` to install the latest client files.
+3. Run `DedicatedServer.sh` (for a Dedicated server) or `DedicatedLobbyServer.sh` (for a party server) in a terminal.
+4. Your terminal will start showing server startup messages, you may see errors or missing files. Do not be worried unless the next steps below fail.
 
 
 
